@@ -25,5 +25,5 @@ jobs:
       uses: Shopify/upload-to-release@1.0.0
       with:
         name: ChannelsDemo.zip
-        path: bin\Release\netcoreapp3.0\win-x86\ChannelsDemo.zip
+        path: bin\Release\netcoreapp3.1\win-x86\ChannelsDemo.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}
