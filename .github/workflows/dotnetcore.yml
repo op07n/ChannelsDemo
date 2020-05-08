@@ -18,9 +18,9 @@ jobs:
     - name: Create ZIP
       shell: pwsh
       run: |
-        cd .\bin\Release\netcoreapp3.0\win-x64\
+        cd .\bin\Release\netcoreapp3.1\win-x86\
         mv publish ChannelsDemo
-        Compress-Archive -Path .\test-winforms1 -DestinationPath test-winforms1.zip
+        Compress-Archive -Path .\ChannelsDemo -DestinationPath ChannelsDemo.zip
     - name: Upload to Existing Release
       uses: Shopify/upload-to-release@1.0.0
       with:
