@@ -19,11 +19,10 @@ jobs:
       shell: pwsh
       run: |
         cd .\bin\Release\netcoreapp3.1\win-x86\
-        mv publish ChannelsDemo
-        Compress-Archive -Path .\ChannelsDemo -DestinationPath ChannelsDemo.zip
+        Compress-Archive -Path . -DestinationPath ChannelsDemo.zip
     - name: Upload to Existing Release
       uses: Shopify/upload-to-release@1.0.0
       with:
         name: ChannelsDemo.zip
-        path: bin\Release\netcoreapp3.1\win-x86\ChannelsDemo.zip
+        path: ChannelsDemo.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}
