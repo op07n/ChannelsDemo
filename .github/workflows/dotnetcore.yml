@@ -1,23 +1,29 @@
 name: .NET Core
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
-    - name: Install dependencies
-      run: dotnet restore
-    - name: Build
+        dotnet-version: 3.1.100
+    - name: Dotnet Publish
       run: dotnet publish --runtime win-x86 --configuration Release
+    - name: Create ZIP
+      shell: pwsh
+      run: |
+        cd .\bin\Release\netcoreapp3.0\win-x64\
+        mv publish ChannelsDemo
+        Compress-Archive -Path .\test-winforms1 -DestinationPath test-winforms1.zip
+    - name: Upload to Existing Release
+      uses: Shopify/upload-to-release@1.0.0
+      with:
+        name: ChannelsDemo.zip
+        path: bin\Release\netcoreapp3.0\win-x86\ChannelsDemo.zip
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
