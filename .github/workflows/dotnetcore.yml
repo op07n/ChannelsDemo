@@ -19,10 +19,10 @@ jobs:
       shell: pwsh
       run: |
         cd .\bin\Release\netcoreapp3.1\win-x86\
-        Compress-Archive -Path . -DestinationPath ChannelsDemo.zip
+        Compress-Archive -Path . -DestinationPath RomanPort.OpenRDS.zip
     - name: Upload to Existing Release
       uses: Shopify/upload-to-release@1.0.0
       with:
-        name: ChannelsDemo.zip
-        path: ChannelsDemo.zip
+        name: RomanPort.OpenRDS.zip
+        path: RomanPort.OpenRDS.zip
         repo-token: ${{ secrets.GITHUB_TOKEN }}
